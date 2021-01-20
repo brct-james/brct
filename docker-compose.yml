@@ -1,0 +1,18 @@
+version: "3"
+services:
+  main-brct:
+    build:
+       context: ./
+       dockerfile: Dockerfile
+    image: node:latest
+    ports:
+      - 50235:50235
+    environment:
+      - NODE_ENV=development
+      - PORT=50235
+    restart: unless-stopped
+    command:
+       sh -c 'npm i && npm start'
+    container_name: main-brct
+    volumes:
+      - ./app:/home/app
